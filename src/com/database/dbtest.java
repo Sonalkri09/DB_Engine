@@ -21,10 +21,12 @@ public class dbtest
 	    System.out.println(beforewh);
 	    
 	    
-	    String afterwh = obj.afterwhere(qry, spqry);
+	    String afterwh = obj.afterwhere(qry);
 	    System.out.println(afterwh);
 	    
-	    obj.conditionalpart(qry, spqry);
+//	    String conpart = obj.conditionalPart(qry);
+//	    System.out.println(conpart);
+	    
 		obj.restrictions(spqry,qry);
 		obj.grpfld(spqry,qry);
 		obj.ordfld(spqry,qry);

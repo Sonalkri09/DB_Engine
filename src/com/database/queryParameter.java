@@ -33,7 +33,7 @@ public class queryParameter {
 	    return bw;
 	}
 		    
-    String afterwhere(String qry,String[] sepqry)
+    String afterwhere(String qry)
     {
     	String aw="";
     	if(qry.contains("where")) 
@@ -43,79 +43,80 @@ public class queryParameter {
     	return aw;
     }
     
-    void conditionalpart(String qry,String[] sepqry) 
-    {
-	      	 
-		    
-		    	System.out.println("Conditional Parts:");
-		    	for (int j=0;j< sepqry.length;j++) 
-		    	{
-		    		if (sepqry[j].equals("where"))
-		    		{
-		    			System.out.println(sepqry[j+1]+sepqry[j+2]+sepqry[j+3]);
-		    		}
-		    	}
-    } 
-	void restrictions(String[] sepqry, String qry)
-	{int i,j;
-		    if(qry.contains("and"))
-		    {
-	 	 for (j=0;j< sepqry.length;j++) {
-	 		 if (sepqry[j].equals("and"))
-	 		 {
-	 			 System.out.println(sepqry[j+1]+sepqry[j+2]+sepqry[j+3]);
-	 		 }
-	 	  }
-		    }
-		    if(qry.contains("or"))
-		    {
-	 	for (j=0;j< sepqry.length;j++) {
-	 		 if (sepqry[j].equals("or"))
-	 		 {
-	 			 System.out.println(sepqry[j+1]+sepqry[j+2]+sepqry[j+3]);
-	 		 }
-	 	  }
-		    }
-	      for (i=0;i<sepqry.length;i++)
-	      {
-	    	  if (sepqry[i].equals("and"))
-	    		  System.out.println(sepqry[i]);
-	    	  else if (sepqry[i].equals("or"))
-	    		  System.out.println(sepqry[i]);
-	    	  else if (sepqry[i].equals("not"))
-	    		  System.out.println(sepqry[i]);
-	      }
+    String[] restrictions(String[] sepqry, String qry)
+	{
+		String []new_arr=sepqry;
+		String []conditions={"","","",""};
+	int i=0;
+	for(int k=0;k<new_arr.length;)
+	{   
+		if((new_arr[k].matches("<"))||(new_arr[k].matches(">"))||(new_arr[k].matches("="))||(new_arr[k].matches("!")))
+	{       
+			conditions[i]=new_arr[k-1]+new_arr[k]+new_arr[k+1];
+			if(new_arr[k+1].matches("="))
+			{conditions[i]=conditions[i]+new_arr[k+2];
+					k++;
+			}
+			i++;}
+		k++;
 	}
+
+	System.out.println("conditions");
+	for(  i=0;i<conditions.length;i++)
+	    System.out.println(conditions[i]);
+	return conditions;
+	}
+
+
+	
+//	    for (i=0;i<sepqry.length;i++)
+//		  {
+//			  if (sepqry[i].equals("and"))
+//				  System.out.println(sepqry[i]);
+//			  else if (sepqry[i].equals("or"))
+//				  System.out.println(sepqry[i]);
+//			  else if (sepqry[i].equals("not"))
+//				  System.out.println(sepqry[i]);
+//		  }
+//	}
 	void grpfld (String[] sepqry,String qry)
-	{int j;
-		    if(qry.contains("groupby"))
-		    {System.out.println("GroupBy field:");
-	      for (j=0;j< sepqry.length;j++) {
-		 		 if (sepqry[j].equals("groupby"))
-		 		 {
-		 			 System.out.println(sepqry[j+1]);
-		 		 }
-		 	  }
+	{
+		int j;
+		if(qry.contains("groupby"))
+		    {
+				System.out.println("GroupBy field:");
+		        for (j=0;j< sepqry.length;j++) 
+		        {
+			 		 if (sepqry[j].equals("groupby"))
+			 		 {
+			 			 System.out.println(sepqry[j+1]);
+			 		 }
+		 	    }
 		    }
-}
-void ordfld(String[] sepqry,String qry)
-{int j;
+	}
+	void ordfld(String[] sepqry,String qry)
+	{
+			int j;
 		    if(qry.contains("orderby"))
-		    {System.out.println("OrderBy field:");
-	      for (j=0;j< sepqry.length;j++) {
-		 		 if (sepqry[j].equals("orderby"))
-		 		 {
-		 			 System.out.println(sepqry[j+1]);
-		 		 }
-		 	  }
+	    	{
+		    	System.out.println("OrderBy field:");
+		      
+		    	for (j=0;j< sepqry.length;j++) 
+		    	{
+			 		 if (sepqry[j].equals("orderby"))
+			 		 {
+			 			 System.out.println(sepqry[j+1]);
+			 		 }
+		 	   }
 		    }
-}	     
-void aggselp(String[] sepqry)
-{
+	}	     
+	void aggselp(String[] sepqry)
+	{
 	      String qry1= sepqry[1];
 	      System.out.println("Selected Parts/aggregate fileds:");
 	      String[] sepqry1 = qry1.split(",");
-	      for (String eaqry1 : sepqry1) {
+	      for (String eaqry1 : sepqry1) 
+	      {
 	         System.out.println(eaqry1);
 	      } 
 	}
