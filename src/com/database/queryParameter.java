@@ -12,36 +12,50 @@ public class queryParameter {
 	      } 
 	      return sepqry;
 	}
-	void filename(String qry) {
+	String filename(String qry) {
+		String codeGroup="";
 	      Pattern p = Pattern.compile("(\\S+).csv");
 		    Matcher m = p.matcher(qry);
 		    if (m.find()) {// get the matching group
-			      String codeGroup = m.group(1);
-			      System.out.println("File Name:");
-			      System.out.format("%s.csv\n", codeGroup);
+			      codeGroup = m.group(1);
 			    }
-	}
-	void qrywhere(String qry,String[] sepqry)
-	{int j;
-		    if(qry.contains("where"))
-		    { System.out.println(qry.substring(0,qry.indexOf("where")));
-	      	 String whrstr =qry.substring(qry.indexOf("where") + 6,qry.length());
-	      	 System.out.println(whrstr);
 		    
-	      	 /*String[] whrstr1 = whrstr.split(" "); 
-	      	 for (String wrstr : whrstr1) {
-	      		 System.out.println(wrstr);
-	      	 } */  	 
-		    
-	      	 System.out.println("Conditional Parts:");
-	 	  for (j=0;j< sepqry.length;j++) {
-	 		 if (sepqry[j].equals("where"))
-	 		 {
-	 			 System.out.println(sepqry[j+1]+sepqry[j+2]+sepqry[j+3]);
-	 		 }
-	 	  }
-		    }
+			return codeGroup;
 	}
+	String beforewhere(String qry)
+	{
+		String bw="";
+	    if(qry.contains("where"))
+	    {
+	    	bw = qry.substring(0,qry.indexOf("where"));
+	    	
+	    }
+	    return bw;
+	}
+		    
+    String afterwhere(String qry,String[] sepqry)
+    {
+    	String aw="";
+    	if(qry.contains("where")) 
+    	{
+    		aw =qry.substring(qry.indexOf("where") + 6,qry.length());
+	     }
+    	return aw;
+    }
+    
+    void conditionalpart(String qry,String[] sepqry) 
+    {
+	      	 
+		    
+		    	System.out.println("Conditional Parts:");
+		    	for (int j=0;j< sepqry.length;j++) 
+		    	{
+		    		if (sepqry[j].equals("where"))
+		    		{
+		    			System.out.println(sepqry[j+1]+sepqry[j+2]+sepqry[j+3]);
+		    		}
+		    	}
+    } 
 	void restrictions(String[] sepqry, String qry)
 	{int i,j;
 		    if(qry.contains("and"))
