@@ -24,17 +24,26 @@ public class dbtest
 	    String afterwh = obj.afterwhere(qry);
 	    System.out.println(afterwh);
 	    
-//	    String conpart = obj.conditionalPart(qry);
-//	    System.out.println(conpart);
-	    
 		obj.restrictions(spqry,qry);
-		obj.grpfld(spqry,qry);
-		obj.ordfld(spqry,qry);
+		
+		obj.logop(qry, spqry);
+		
+		System.out.println("GroupBy field:");
+		String group = obj.grpfld(spqry,qry);
+		System.out.println(group);
+		
+		System.out.println("OrderBy field:");
+		String order = obj.ordfld(spqry,qry);
+		System.out.println(order);
+		
 		obj.aggselp(spqry);
 		scanner.close();
-		csvfile obj1=new csvfile();
-		obj1.mn();
+//		csvfile obj1=new csvfile();
+//		obj1.mn();
 
+	 
+		
+		
 	}
 
 }

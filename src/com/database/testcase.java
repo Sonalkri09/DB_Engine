@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class testcase {
+public class testcase 
+{
 
 	@Test
-	public void test() {
+	public void test() 
+	{
 		queryParameter juint = new queryParameter();
-		String name = "select * from ipl.csv where season > 2014 and city = 'Bangalore'";
+		String name = "select * from ipl.csv where season > 2014 and city = 'Bangalore' order by win_by_runs group by team1";
 		String[] spqry= juint.splitquery(name);
 		
 		//To check file name
@@ -23,17 +25,26 @@ public class testcase {
 		
 		//To check after where 
 		String afwh = juint.afterwhere(name);
-		Assert.assertTrue(afwh.equals("season > 2014 and city = 'Bangalore'"));
+		Assert.assertTrue(afwh.equals("season > 2014 and city = 'Bangalore' order by win_by_runs group by team1"));
 		
 		// To check the conditions
     	String[] conditions= {"","","",""};
     	conditions = juint.restrictions(spqry,name);
     	Assert.assertTrue(conditions[0].equals("season>2014"));
     	Assert.assertTrue(conditions[1].equals("city='Bangalore'"));
-  
-		
-		
-		
-		
+    	
+    	//To check logical operator
+    	String[] logical = {""};
+    	logical = juint.logop(name, spqry);
+    	Assert.assertTrue(logical[0].equals("and"));
+    	
+    	//To check group fields
+    	String grp = juint.grpfld(spqry, name);
+    	Assert.assertTrue(grp.equals("team1"));
+    	
+    	//To check order fields
+    	String ord = juint.ordfld(spqry, name);
+    	Assert.assertTrue(ord.equals("win_by_runs"));
+    	
 	}
 }
