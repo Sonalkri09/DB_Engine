@@ -141,7 +141,7 @@ public class queryParameter {
 		}	     
 		
 		//Selected fields
-		void aggselp(String[] sepqry)
+		String[] aggselp(String[] sepqry)
 		{
 		      String qry1= sepqry[1];
 		      System.out.println("Selected Parts/aggregate fileds:");
@@ -150,5 +150,6 @@ public class queryParameter {
 		      {
 		         System.out.println(eaqry1);
 		      } 
+		      return sepqry1;
 		}
 }

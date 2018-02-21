@@ -38,12 +38,6 @@ public class dbtest
 		
 		obj.aggselp(spqry);
 		scanner.close();
-//		csvfile obj1=new csvfile();
-//		obj1.mn();
-
-	 
-		
-		
 	}
 
 }
