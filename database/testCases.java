@@ -1,13 +1,17 @@
 package database;
 
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-public class testCases {
+public class testCases 
+{
 
 	@Test
-	public void test() {
+	public void test() 
+	{
 		QueryParameter juint = new QueryParameter();
 		String name = "select * from ipl.csv where season > 2014 and city = 'Bangalore' order by win_by_runs group by team1";
 		String[] spqry= juint.splitquery(name);
@@ -43,7 +47,5 @@ public class testCases {
     	String ord = juint.ordfld(spqry, name);
     	Assert.assertTrue(ord.equals("win_by_runs"));
     	
-    	
-   }
-
+	}
 }
