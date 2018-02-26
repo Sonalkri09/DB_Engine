@@ -3,7 +3,8 @@ package com.db.qryreader;
 import java.util.Scanner;
 
 public class dbtest {
-
+String qry="";
+String[] spqry= {""};
 	public static void main(String[] args) {
 		System.out.println("Enter the query:");
 	   	Scanner scanner = new Scanner(System.in);
@@ -35,7 +36,17 @@ public class dbtest {
 		System.out.println(order);
 		
 		obj.aggselp(spqry);
+		
+		csvfile csv = new csvfile();
+		try {
+			csv.filereader();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		scanner.close();
+		
+		
 
 	}
 

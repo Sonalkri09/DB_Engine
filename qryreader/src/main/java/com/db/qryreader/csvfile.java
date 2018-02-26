@@ -9,7 +9,7 @@ package com.db.qryreader;
 	import java.util.Date;  
 
 
-			public class csvfile {
+			public class csvfile extends dbtest {
 				int id;
 				int season;
 				String city;
@@ -32,7 +32,7 @@ package com.db.qryreader;
 				
 
 		
-			    public static void main(String[] args)throws Exception {
+			    public void filereader() throws Exception {
 			       String[] f=new String[100000];
 			       String[][] td=new String[10000][10000];
 			       int p=0,k=0;
@@ -109,15 +109,15 @@ package com.db.qryreader;
 			    	   
 			    	}
 			      
-			    	  for (int i=1;i<=577;i++)
+			    	  /*for (int i=1;i<=577;i++)
 				      {
 				    	  System.out.println(obj[i].id);
 				    	  System.out.println(obj[i].season);
 				    	  System.out.println(obj[i].city);
 				    	  System.out.println(obj[i].date);
-				    	  System.out.println( obj[i].team1);
+				    	  System.out.println(obj[i].team1);
 				    	  System.out.println(obj[i].team2);
-				    	  System.out.println( obj[i].toss_winner);
+				    	  System.out.println(obj[i].toss_winner);
 				    	  System.out.println(obj[i].toss_decision);
 				    	  System.out.println(obj[i].result);
 				    	  System.out.println(obj[i].dl_applied);
@@ -129,30 +129,9 @@ package com.db.qryreader;
 				    	  System.out.println(obj[i].umpire1);
 				    	  System.out.println(obj[i].umpire2);
 				    	  System.out.println(obj[i].umpire3);
-				      }
-		      
-			    	 /* for (int i=1;i<=577;i++)
-				      {
-				    	  System.out.println(obj[i].id);
-				    	  System.out.println(obj[i].season);
-				    	  System.out.println(obj[i].city);
-				    	  System.out.println(obj[i].date);
-				    	  System.out.println(obj[i].team1);
-				    	  System.out.println(obj[i].team2);
-				    	  System.out.println(obj[i].toss_winner);
-				    	  System.out.println(obj[i].toss_decision);
-		    	          System.out.println(obj[i].result);
-				    	  System.out.println(obj[i].dl_applied);
-				    	  System.out.println(obj[i].winner);
-				    	  System.out.println(obj[i].win_by_runs);
-				    	  System.out.println(obj[i].win_by_wickets);
-				    	  System.out.println(obj[i].player_of_match);
-				    	  System.out.println(obj[i].venue);
-				    	  System.out.println(obj[i].umpire1);
-				    	  System.out.println(obj[i].umpire2);
-				    	  System.out.println(obj[i].umpire3);
 				      }*/
-			    	  
+		      
+			    	 
 		    	    
 
 			    	 
@@ -162,16 +141,11 @@ package com.db.qryreader;
 			    	  String[] header = hdr.split(",");
 			    	  
 			    	  
-			    	  System.out.println("Enter the query:");
-			  	   	Scanner scanner = new Scanner(System.in);
-			  		String qry = scanner.nextLine();
-			  	    queryparameter obj1=new queryparameter();
-			  	    String[] spqry= obj1.splitquery(qry);
 			    	  
-			    	  //QueryParameter qry1 = new QueryParameter();
-			    	  String[] field = obj1.aggselp(spqry);
+			    	  queryparameter qry1 = new queryparameter();
+			    	  String[] field = qry1.aggselp(spqry);
 			    	  
-			    	  String[] cond = obj1.restrictions(spqry, qry);
+			    	  String[] cond = qry1.restrictions(spqry, qry);
 			    	  String con = cond[0];
 			    	 
 			    	  String[] con2= con.split(" ");
@@ -190,6 +164,7 @@ package com.db.qryreader;
 			    	    
 			    	    
 			    }
+				
 			    
 			}
 
